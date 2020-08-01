@@ -1,0 +1,15 @@
+/* elements */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  font-size: 28px;
+}
+/* ids */
+
+/* classes */
