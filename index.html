@@ -6,21 +6,59 @@
     <title>Weather Dashboard</title>
     <!-- Local style sheet -->
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <header>
       <h1>Weather Dashboard</h1>
     </header>
     <div class="row">
-      <div id="leftSide" class="col">
+      <div id="leftSide" class="col-4">
         <!-- Search box -->
-        <!-- City list -->
+        <h4>Search for a City:</h4>
+        <form id="searchForm" class="form-inline my-2 my-lg-0">
+          <input
+            id="searchText"
+            class="form-control"
+            type="search"
+            placeholder="Search..."
+            aria-label="Search"
+          />
+          <button id="searchBtn" class="btn btn-primary my-2 my-sm-0">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        <!-- City listing -->
+        <div id="cityList"></div>
       </div>
-      <div id="rightSide" class="col">
+      <div id="rightSide" class="col-8 hide">
         <div id="cityDisplay" class="row"></div>
-        <div id="forecast" class="row"></div>
+        <div id="forecast" class="row">
+          <div id="forecastTitle">
+            <h3>5 Day Forecast:</h3>
+          </div>
+          <div class="forecastBox">1</div>
+          <div class="forecastBox">2</div>
+          <div class="forecastBox">3</div>
+          <div class="forecastBox">4</div>
+          <div class="forecastBox">5</div>
+        </div>
       </div>
     </div>
-    <script src="app.js"></script>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/ff9445e543.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Local JavaScript -->
+    <script src="index.js"></script>
   </body>
 </html>

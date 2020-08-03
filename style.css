@@ -11,6 +11,44 @@ header {
   font-size: 28px;
   padding: 15px;
 }
+
+input,
+label {
+  display: block !important;
+}
+
 /* ids */
+#cityDisplay {
+  border: rgb(172, 169, 169) solid 1px;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+#forecast {
+  border: rgb(172, 169, 169) solid 1px;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+#forecastTitle {
+  display: block;
+}
 
 /* classes */
+.hide {
+  display: none;
+}
+.cityBtn {
+  display: block;
+  width: 100%;
+}
+
+.forecastBox {
+  height: 10rem;
+  width: 10rem;
+  background-color: blue;
+  margin: 5px 8px;
+  color: white;
+}
