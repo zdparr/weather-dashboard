@@ -36,6 +36,10 @@ label {
   display: block;
 }
 
+#forecastArea {
+  display: flex;
+}
+
 /* classes */
 .hide {
   display: none;
@@ -46,9 +50,10 @@ label {
 }
 
 .forecastBox {
-  height: 10rem;
-  width: 10rem;
-  background-color: blue;
+  height: 7rem;
+  width: 7rem;
+  background-color: rgb(13, 98, 255);
   margin: 5px 8px;
   color: white;
+  border-radius: 5px;
 }
