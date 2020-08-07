@@ -31,6 +31,7 @@ let UVValue = "";
 //https://api.openweathermap.org/data/2.5/weather?q=London
 const weatherAPIURL = "https://api.openweathermap.org/data/2.5/weather?";
 const weatherAPIKey = "appid=18bc498477de9eed0592f5b6a20dc452&";
+const forecastAPIURL = "https://api.openweathermap.org/data/2.5/forecast?"
 // Current weather for selected city
 function processCityBtn(name) {
   let weatherAPICity = "q=" + $(name).text();
@@ -44,7 +45,7 @@ function processCityBtn(name) {
     url: searchURL,
     method: "GET",
   }).then(function (response) {
-    console.log(response)
+    //console.log(response)
 
     let dateTime = moment(response.dt, "X").format(" (MM/DD/YYYY)")
     let iconcode = response.weather[0].icon
@@ -80,6 +81,7 @@ function processCityBtn(name) {
       cityObjLat +
       cityObjLon;
 
+    processForecast(weatherAPICity)
     // Function to get UV index
     $.ajax({
       url: UVSearchURL,
@@ -122,6 +124,7 @@ function processCityBtn(name) {
   });
 }
 
+// 
 function processSearchBtn() {
   let searchText = $("#searchText").val()
   console.log(searchText)
@@ -214,6 +217,36 @@ function processSearchBtn() {
   });
 }
 
+// Forecast Function
+function processForecast(city) {
+  let forecastURL = forecastAPIURL + weatherAPIKey + city
+  $.ajax({
+    url: forecastURL,
+    method: "GET",
+  }).then(function (res) {
+    console.log(res)
+    let forecastList = res.list
+    for (let i = 0; i < forecastList.length; i++) {
+      let forecastInfo = res.list[i]
+      let forecastDateTime = (res.list[i].dt_txt)
+      if (forecastDateTime.match("12:00:00")) {
+        let forecastBlock = $("<div>").attr("class", "forecastBox")
+        let forecastDate = moment(forecastInfo.dt, "X").format(" (MM/DD/YYYY)")
+        let forecastImageSrc = "http://openweathermap.org/img/w/" + forecastInfo.weather[0].icon + ".png";
+        let forecastImage = $("<img>").attr("src", forecastImageSrc)
+        let forecastKelvinTemp = forecastInfo.main.temp
+        let forecastFarenheitTemp = $("<p>").text("Temp: " + ((forecastKelvinTemp - 273.15) * 1.8 + 32).toFixed(2) + " °F")
+        let forecastHumidity = $("<p>").text("Humidity: " + forecastInfo.main.humidity + " %")
+
+        forecastBlock.append(forecastDate, forecastImage, forecastFarenheitTemp, forecastHumidity)
+        $("#forecastArea").append(forecastBlock)
+      }
+
+    }
+
+  })
+}
+
 $(".cityBtn").on("click", function () {
   processCityBtn(this)
 });
@@ -222,4 +255,4 @@ $("#searchBtn").on("click", function (event) {
   event.preventDefault()
   processSearchBtn()
 });
-// 5 day forecast for selected city
+
