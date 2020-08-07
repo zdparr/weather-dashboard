@@ -50,11 +50,11 @@ label {
 }
 
 .forecastBox {
-  height: 9rem;
-  width: 9rem;
-  background-color: rgb(13, 98, 255);
+  height: 10rem;
+  width: 10rem;
+  background-color: rgb(80, 114, 177);
   margin: 5px 8px;
   color: white;
   border-radius: 5px;
-  padding: 5px;
+  padding: 9px;
 }

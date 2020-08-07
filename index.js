@@ -64,7 +64,7 @@ function processCityBtn(name) {
     );
     // Get humidity from response
     let humidityObj = $("<p>").text(
-      "Humidity: " + response.main.humidity + " %"
+      "Humidity: " + response.main.humidity + "%"
     );
     // Get wind speed from response
     let windSpeedObj = $("<p>").text(
@@ -158,7 +158,7 @@ function processSearchBtn() {
     );
     // Get humidity from response
     let humidityObj = $("<p>").text(
-      "Humidity: " + response.main.humidity + " %"
+      "Humidity: " + response.main.humidity + "%"
     );
     // Get wind speed from response
     let windSpeedObj = $("<p>").text(
@@ -226,6 +226,7 @@ function processForecast(city) {
   }).then(function (res) {
     console.log(res)
     let forecastList = res.list
+    $("#forecastArea").empty()
     for (let i = 0; i < forecastList.length; i++) {
       let forecastInfo = res.list[i]
       let forecastDateTime = (res.list[i].dt_txt)
@@ -236,7 +237,7 @@ function processForecast(city) {
         let forecastImage = $("<img>").attr("src", forecastImageSrc)
         let forecastKelvinTemp = forecastInfo.main.temp
         let forecastFarenheitTemp = $("<p>").text("Temp: " + ((forecastKelvinTemp - 273.15) * 1.8 + 32).toFixed(2) + " °F")
-        let forecastHumidity = $("<p>").text("Humidity: " + forecastInfo.main.humidity + " %")
+        let forecastHumidity = $("<p>").text("Humidity: " + forecastInfo.main.humidity + "%")
 
         forecastBlock.append(forecastDate, forecastImage, forecastFarenheitTemp, forecastHumidity)
         $("#forecastArea").append(forecastBlock)
