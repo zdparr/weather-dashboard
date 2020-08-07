@@ -49,7 +49,7 @@ function processCityBtn(name) {
 
     let dateTime = moment(response.dt, "X").format(" (MM/DD/YYYY)")
     let iconcode = response.weather[0].icon
-    let iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    let iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
     let iconImage = $("<img>").attr("src", iconurl)
 
     // Create div to store weather information
@@ -76,7 +76,7 @@ function processCityBtn(name) {
     let cityObjLat = "lat=" + response.coord.lat;
 
     let UVSearchURL =
-      "http://api.openweathermap.org/data/2.5/uvi?" +
+      "https://api.openweathermap.org/data/2.5/uvi?" +
       weatherAPIKey +
       cityObjLat +
       cityObjLon;
@@ -143,7 +143,7 @@ function processSearchBtn() {
 
     let dateTime = moment(response.dt, "X").format(" (MM/DD/YYYY)")
     let iconcode = response.weather[0].icon
-    let iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    let iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
     let iconImage = $("<img>").attr("src", iconurl)
 
     // Create div to store weather information
@@ -170,7 +170,7 @@ function processSearchBtn() {
     let cityObjLat = "lat=" + response.coord.lat;
 
     let UVSearchURL =
-      "http://api.openweathermap.org/data/2.5/uvi?" +
+      "https://api.openweathermap.org/data/2.5/uvi?" +
       weatherAPIKey +
       cityObjLat +
       cityObjLon;
@@ -233,7 +233,7 @@ function processForecast(city) {
       if (forecastDateTime.match("12:00:00")) {
         let forecastBlock = $("<div>").attr("class", "forecastBox")
         let forecastDate = moment(forecastInfo.dt, "X").format(" (MM/DD/YYYY)")
-        let forecastImageSrc = "http://openweathermap.org/img/w/" + forecastInfo.weather[0].icon + ".png";
+        let forecastImageSrc = "https://openweathermap.org/img/w/" + forecastInfo.weather[0].icon + ".png";
         let forecastImage = $("<img>").attr("src", forecastImageSrc)
         let forecastKelvinTemp = forecastInfo.main.temp
         let forecastFarenheitTemp = $("<p>").text("Temp: " + ((forecastKelvinTemp - 273.15) * 1.8 + 32).toFixed(2) + " °F")
