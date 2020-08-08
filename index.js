@@ -224,7 +224,6 @@ function processForecast(city) {
     url: forecastURL,
     method: "GET",
   }).then(function (res) {
-    console.log(res)
     let forecastList = res.list
     $("#forecastArea").empty()
     for (let i = 0; i < forecastList.length; i++) {
