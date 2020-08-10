@@ -23,12 +23,8 @@ $(document).ready(function () {
       .text(cityListArr[i]);
     cityListArea.append(cityBtn);
   }
-
-
-
   // Value for getting UV Index
   let UVValue = "";
-
 
   // Get weather information
   // Open weather connection information
@@ -100,24 +96,6 @@ $(document).ready(function () {
         method: "GET",
       }).then(function (res) {
         let UVIndexValue = res.value;
-
-        // Green index
-        if (UVIndexValue >= 0 && UVIndexValue <= 2.99) {
-          UVValue = $("<p>").text("UV Index: " + UVIndexValue);
-          UVValue = "UV Index: " + UVIndexValue;
-        } else if (UVIndexValue >= 3 && UVIndexValue <= 5.99) {
-          //UVValue = $("<p>").text("UV Index: " + UVIndexValue);
-          UVValue = "UV Index: " + UVIndexValue;
-        } else if (UVIndexValue >= 6 && UVIndexValue <= 7.99) {
-          //UVValue = $("<p>").text("UV Index: " + UVIndexValue);
-          UVValue = "UV Index: " + UVIndexValue;
-        } else if (UVIndexValue >= 8 && UVIndexValue <= 10.99) {
-          //let UVValue = $("<p>").text("UV Index: " + UVIndexValue);
-          UVValue = "UV Index: " + UVIndexValue;
-        } else {
-          //UVValue = $("<p>").text("UV Index: " + UVIndexValue);
-          UVValue = "UV Index: " + UVIndexValue;
-        }
 
         // Add city pages to city block
         cityObj.append(
@@ -204,24 +182,6 @@ $(document).ready(function () {
         method: "GET",
       }).then(function (res) {
         let UVIndexValue = res.value;
-
-        // Green index
-        if (UVIndexValue >= 0 && UVIndexValue <= 2.99) {
-          UVValue = $("<p>").text("UV Index: " + UVIndexValue);
-          UVValue = "UV Index: " + UVIndexValue;
-        } else if (UVIndexValue >= 3 && UVIndexValue <= 5.99) {
-          //UVValue = $("<p>").text("UV Index: " + UVIndexValue);
-          UVValue = "UV Index: " + UVIndexValue;
-        } else if (UVIndexValue >= 6 && UVIndexValue <= 7.99) {
-          //UVValue = $("<p>").text("UV Index: " + UVIndexValue);
-          UVValue = "UV Index: " + UVIndexValue;
-        } else if (UVIndexValue >= 8 && UVIndexValue <= 10.99) {
-          //let UVValue = $("<p>").text("UV Index: " + UVIndexValue);
-          UVValue = "UV Index: " + UVIndexValue;
-        } else {
-          //UVValue = $("<p>").text("UV Index: " + UVIndexValue);
-          UVValue = "UV Index: " + UVIndexValue;
-        }
 
         // Add city pages to city block
         cityObj.append(
