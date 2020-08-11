@@ -37,86 +37,12 @@ $(document).ready(function () {
   if (window.localStorage.length) {
     let lastCitySearch = JSON.parse(localStorage.getItem("city"));
     let lastCityName = lastCitySearch[0].cityName
-    processCityBtn(lastCityName)
-  }
-
-  // Current weather for city button
-  function processCityBtn(name) {
-    let weatherAPICity = "q=" + name;
-    let searchURL = weatherAPIURL + weatherAPIKey + weatherAPICity;
-    // Empty previous search results
-    $("#cityDisplay").empty();
-    // Show right side once a search is triggered
-    $("#rightSide").removeClass("hide");
-
-    $.ajax({
-      url: searchURL,
-      method: "GET",
-    }).then(function (response) {
-      //console.log(response)
-
-      let dateTime = moment(response.dt, "X").format(" (MM/DD/YYYY)")
-      let iconcode = response.weather[0].icon
-      let iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
-      let iconImage = $("<img>").attr("src", iconurl)
-
-      // Create div to store weather information
-      let cityObj = $("<div>").attr("id", "cityObj");
-      // Get city name from response
-      let cityNameObj = $("<h2>").append(response.name, dateTime, iconImage);
-      // Get kelvin temp from response
-      let kelvinTempObj = response.main.temp;
-      // Convert kelvin to farenheit with two decimals
-      let farenheitTempObj = $("<p>").text(
-        "Temperature: " + ((kelvinTempObj - 273.15) * 1.8 + 32).toFixed(2) + " °F"
-      );
-      // Get humidity from response
-      let humidityObj = $("<p>").text(
-        "Humidity: " + response.main.humidity + "%"
-      );
-      // Get wind speed from response
-      let windSpeedObj = $("<p>").text(
-        "Wind Speed: " + response.wind.speed + " MPH"
-      );
-
-      // UV index lookup
-      let cityObjLon = "&lon=" + response.coord.lon;
-      let cityObjLat = "lat=" + response.coord.lat;
-
-      let UVSearchURL =
-        "https://api.openweathermap.org/data/2.5/uvi?" +
-        weatherAPIKey +
-        cityObjLat +
-        cityObjLon;
-
-      processForecast(weatherAPICity)
-      // Function to get UV index
-      $.ajax({
-        url: UVSearchURL,
-        method: "GET",
-      }).then(function (res) {
-        let UVIndexValue = res.value;
-
-        // Add city pages to city block
-        cityObj.append(
-          cityNameObj,
-          farenheitTempObj,
-          humidityObj,
-          windSpeedObj,
-          UVValue
-        );
-
-        // Add city block to page
-        $("#cityDisplay").append(cityObj);
-      });
-
-
-    });
+    processSearchBtn(lastCityName)
   }
 
   // Current weather for search
-  function processSearchBtn() {
-    let searchText = $("#searchText").val()
+  function processSearchBtn(searchText) {
+
 
     // Clear out old searches
     if (window.localStorage.length) {
@@ -233,13 +159,14 @@ $(document).ready(function () {
 
   // Trigger for previously searched city
   $(".cityBtn").on("click", function () {
-    processCityBtn($(this).text())
+    processSearchBtn($(this).text())
   });
 
   // Trigger for search box
   $("#searchBtn").on("click", function (event) {
     event.preventDefault()
-    processSearchBtn()
+    let searchText = $("#searchText").val()
+    processSearchBtn(searchText)
   });
 
 })
